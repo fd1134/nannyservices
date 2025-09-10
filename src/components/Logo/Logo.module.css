@@ -2,13 +2,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color:  var(--light); /* pembe tonları güven & şefkati çağrıştırır */
+  color:  var(--main); /* pembe tonları güven & şefkati çağrıştırır */
   font-weight: bold;
   font-size: 20px;
 }
 
 .heart {
-  color: var(--light); /* kırmızı kalp */
+  color: var(--main); /* kırmızı kalp */
 }
 
 .text {

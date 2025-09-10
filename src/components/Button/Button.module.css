@@ -17,7 +17,11 @@
   border: 1px solid var(--main);
 }
 
-
+.btn--filled:hover {
+  background: var(--light);
+  color: var(--main);
+  border: 1px solid var(--light);
+}
 
 /* Outlined button */
 .btn--outlined {

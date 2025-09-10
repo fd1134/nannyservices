@@ -1,4 +1,6 @@
-import Button from '../Button/Button'
+import { Routes,Route } from 'react-router-dom'
+import Home from '../../pages/Home/Home'
+import Nannies from '../../pages/Nannies/Nannies'
 import Header from '../Header/Header'
 import './App.css'
 
@@ -7,10 +9,13 @@ function App() {
 
   return (
     <>
-  <Header />
-  <Button variant="btn--filled" onClick={() => alert('Butona tıklandı!')}>
-    Tıkla Beni
-  </Button>
+ 
+
+  <Routes>
+    <Route path='/' element={<Home />} />
+    <Route path='/nannies' element={<Nannies />} />
+  </Routes>
+
     </>
   )
 }
