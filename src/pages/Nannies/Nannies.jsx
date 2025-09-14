@@ -1,7 +1,15 @@
+import Navigation from "../../components/Navigation/Navigation";
+import css from "./Nannies.module.css";
+import FilterDropdown from "../../components/FilterDropdown/FilterDropdown";
+
 const Nannies = () => {
   return (
-    <div>
-      <h1>Nannies</h1>
+    <div className={css.nannies}>
+       <Navigation />
+      <div className={css.nanniesContainer}>
+      <FilterDropdown />
+      </div>
+     
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import css from "./NavHome.module.css";
-import Button from "../components/Button/Button"; // NavLink destekli versiyon
+import Button from "../Button/Button";
 
 const NavHome = () => {
-  const isLogin = false; // Giriş yapılmamış gibi örnekledim
+  const isLogin = false; 
 
   return (
     <nav className={css.navbar}>

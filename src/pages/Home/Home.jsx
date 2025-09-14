@@ -2,7 +2,7 @@ import { ArrowUpRight, ArrowRight } from "lucide-react";
 import css from "./Home.module.css";
 import heroImg from "../../assets/hero.png";
 import { Link } from "react-router-dom";
-import NavHome from "../../NavHome/NavHome";
+import NavHome from "../../components/NavHome/NavHome";
 import FilterDropdown from "../../components/FilterDropdown/FilterDropdown";
 
 const Home = () => {

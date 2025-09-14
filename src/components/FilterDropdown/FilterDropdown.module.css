@@ -1,11 +1,12 @@
 .wrapper {
-  width: 190px;
+  width:226px;
 }
 
 .label {
   font-size: 14px;
-  color: #6b7280; /* gri */
-  margin-bottom: 4px;
+  color: #8A8A89;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
 .dropdown {
@@ -16,12 +17,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  background-color: #ef4444; /* kırmızı */
+  width: 226px;
+  height: 48px;
+   border-radius: 14px;
+   padding: 16px 18px;
+  background-color: #ef4444;
   color: white;
   font-weight: 500;
-  padding: 8px 12px;
-  border-radius: 10px;
+  
+ 
   cursor: pointer;
   border: none;
 }
@@ -63,5 +67,5 @@
 .selectedOption {
 
   color: var(--text);
-  font-weight: 600;
+  font-weight: 400;
 }

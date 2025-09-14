@@ -1,0 +1,11 @@
+.nannies {
+ background-color: #F3F3F3;
+ width: 100vw;
+ height: 100vh;
+}
+.nanniesContainer {
+ display: flex;
+ flex-direction: column;
+ 
+ padding: 60px 128px 0px 128px;
+}
