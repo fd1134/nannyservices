@@ -38,16 +38,33 @@
   transition: color 0.3s ease;
 }
 
+.navLink:hover::after,
 .navLink.active::after {
   content: "";
   position: absolute;
-  bottom: -8px; /* linkin altına yerleşmesi için */
+  bottom: -6px;
   left: 50%;
   transform: translateX(-50%);
   width: 6px;
   height: 6px;
   background-color: white;
   border-radius: 50%;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 .btnContainer {
   display: flex;
