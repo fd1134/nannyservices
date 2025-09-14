@@ -1,26 +1,32 @@
 .navbar {
-  background-color: transparent;
-  padding: 16px 32px;
-  display: flex;
-  justify-content: space-between;
-  width: calc(100% - 296px);
-  align-items: center;
   position: absolute;
   top: 32px;
-  left: 132px;
-  right: 164px;
+  left: 32px;
+  right: 32px;
+  display: flex;  
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  padding: 16px 32px;
 }
 .logo {
   font-size: 24px;
   font-weight: bold;
 }
-.nav {
+.logoImage{
+  width: 32px;
+  height: 32px;
+  fill: blue;
+}
+.spacer {
   display: flex;
-  
+  gap: 92px;
+  justify-content: space-between;
 }
 
 .navList {
   list-style: none;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,4 +40,8 @@
   font-weight: 500;
   color: var(--light);
   transition: color 0.3s ease;
+}
+.btnContainer {
+  display: flex;
+  gap: 8px;
 }

@@ -1,9 +1,10 @@
+import { NavLink } from "react-router-dom";
 import css from "./Button.module.css";
 const Button = ({ children, variant = "filled", ...props }) => {
   return (
-    <button className={`${css.btn} ${css[variant]}`} {...props}>
+    <NavLink className={`${css.btn} ${css[variant]}`} {...props}>
       {children}
-    </button>
+    </NavLink>
   )
 }
 export default Button;

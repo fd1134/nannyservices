@@ -31,7 +31,8 @@
 }
 
 .btn--outlined:hover {
-  background:  var(--main);
+  background:  var(--light);
+  color: var(--main);
   border: none ;
 
 }

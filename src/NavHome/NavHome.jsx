@@ -1,46 +1,58 @@
+import { NavLink } from "react-router-dom";
 import css from "./NavHome.module.css";
-import Button from "../components/Button/Button";
+import Button from "../components/Button/Button"; // NavLink destekli versiyon
+
 const NavHome = () => {
-  const isLogin = true; // Example condition, replace with actual login state
+  const isLogin = false; // Giriş yapılmamış gibi örnekledim
+
   return (
     <nav className={css.navbar}>
-      <div className={css.logo}>Nanny.Services</div>
+      <div className={css.logo}>
+        <NavLink className={css.logoLink} to="/">
+          <img
+            src="/logo.svg"
+            alt="Logo"
+            width="32"
+            height="32"
+            className={css.logoImage}
+          />
+        </NavLink>
+      </div>
+
       <div className={css.spacer}>
-      <ul className={css.navList}>
-        <li>
-          <a className={css.navLink} href="/">
-            Home
-          </a>
-        </li>
-        <li>
-          <a className={css.navLink} href="/nannies">
-            Nannies
-          </a>
-        </li>
-        {isLogin ? (
-          <></>
-        ) : (
-          <>
+        <ul className={css.navList}>
+          <li>
+            <NavLink to="/" className={css.navLink} >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/nannies" className={css.navLink}>
+              Nannies
+            </NavLink>
+          </li>
+          {isLogin && (
             <li>
-              <a className={css.navLink} href="/favorites">
+              <NavLink to="/favorites" className={css.navLink}>
                 Favorites
-              </a>
+              </NavLink>
             </li>
-            
-          </>
-        )}
-      </ul>
-      {isLogin ? (
-        <>
-          <Button variant="btn--outlined">Log In</Button>
-          <Button variant="btn--filled">Registration</Button>
-        </>
-      ) : (
-        <>
-          <span className={css.user}>John Doe</span>
-          <Button variant="btn--filled">Log Out</Button>
-        </>
-      )}
+          )}
+        </ul>
+
+        <div className={css.btnContainer}>
+          {!isLogin ? (
+            <>
+              <Button to="/login" variant="btn--outlined">Log In</Button>
+              <Button to="/register" variant="btn--filled">Registration</Button>
+            </>
+          ) : (
+            <>
+              <span className={css.user}>John Doe</span>
+              <Button to="/logout" variant="btn--filled">Log Out</Button>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );
