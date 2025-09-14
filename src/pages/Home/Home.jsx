@@ -3,13 +3,13 @@ import css from "./Home.module.css";
 import heroImg from "../../assets/hero.png";
 import { Link } from "react-router-dom";
 import NavHome from "../../components/NavHome/NavHome";
-import FilterDropdown from "../../components/FilterDropdown/FilterDropdown";
+
 
 const Home = () => {
   return (
     <main className={css.container}>
       <NavHome />
-      <FilterDropdown />
+     
       <div className={css.hero}>
         <h1 className={css.title}>Make Life Easier for the Family:</h1>
         <p className={css.description}>
