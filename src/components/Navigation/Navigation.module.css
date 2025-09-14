@@ -31,11 +31,23 @@
 }
 
 .navLink {
-
+  position: relative;
   text-decoration: none;
   font-weight: 500;
   color: var(--light);
   transition: color 0.3s ease;
+}
+
+.navLink.active::after {
+  content: "";
+  position: absolute;
+  bottom: -8px; /* linkin altına yerleşmesi için */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 50%;
 }
 .btnContainer {
   display: flex;

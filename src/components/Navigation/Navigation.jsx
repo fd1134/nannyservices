@@ -11,7 +11,7 @@ const Navigation = () => {
       <div className={css.logo}>
         <NavLink className={css.logoLink} to="/">
           <img
-            src="/logo.svg"
+            src="/logo.png"
             alt="Logo"
             width="32"
             height="32"
@@ -22,18 +22,24 @@ const Navigation = () => {
 
       <ul className={css.navList}>
         <li>
-          <NavLink to="/" className={css.navLink}>
+          <NavLink to="/" className={({ isActive }) =>
+    isActive ? `${css.navLink} ${css.active}` : css.navLink
+  }>
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to="/nannies" className={css.navLink}>
+          <NavLink to="/nannies" className={({ isActive }) =>
+    isActive ? `${css.navLink} ${css.active}` : css.navLink
+  }>
             Nannies
           </NavLink>
         </li>
         {isLogin && (
           <li>
-            <NavLink to="/favorites" className={css.navLink}>
+            <NavLink to="/favorites" className={({ isActive }) =>
+    isActive ? `${css.navLink} ${css.active}` : css.navLink
+  }>
               Favorites
             </NavLink>
           </li>
@@ -43,10 +49,10 @@ const Navigation = () => {
       <div className={css.btnContainer}>
         {!isLogin ? (
           <>
-            <Button to="/login" variant="btn--outlined">
+            <Button  variant="btn--outlined">
               Log In
             </Button>
-            <Button to="/register" variant="btn--filled">
+            <Button variant="btn--filled">
               Registration
             </Button>
           </>
@@ -59,7 +65,7 @@ const Navigation = () => {
            <span className={css.userName}>John Doe</span>
           </div>
           
-            <Button to="/logout" variant="btn--outlined">
+            <Button  variant="btn--outlined">
               Log Out
             </Button>
           </>

@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 import NavHome from "../../components/NavHome/NavHome";
 
 
+
 const Home = () => {
+  
   return (
     <main className={css.container}>
       <NavHome />
@@ -28,6 +30,8 @@ const Home = () => {
       <div className={css.imageContainer}>
         <img src={heroImg} alt="Nanny Services" className={css.image} />
       </div>
+     
+     
     </main>
   );
 };
