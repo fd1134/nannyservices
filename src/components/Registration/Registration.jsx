@@ -2,14 +2,18 @@ import { useForm } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import css from "./LoginForm.module.css";
 import Button from "../Button/Button";
 import { useState } from "react";
-
-const LoginForm = () => {
+import css from "./Registration.module.css";
+const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
+
   const togglePassword = () => setShowPassword((prev) => !prev);
   const loginSchema = yup.object({
+    name: yup
+      .string()
+      .min(3, "Name must be at least 3 characters")
+      .required("Name is required"),
     email: yup
       .string()
       .email("Please enter a valid email address")
@@ -30,18 +34,29 @@ const LoginForm = () => {
   const onSubmit = (data) => {
     console.log("Form verisi:", data);
   };
-
   return (
     <div className={css.formContainer}>
       <div className={css.header}>
-        <h3 className={css.formTitle}>Log In</h3>
+        <h3 className={css.formTitle}>Registration</h3>
         <p className={css.formSubtitle}>
-          Welcome back! Please enter your credentials to access your account and
-          continue your babysitter search.
+          Thank you for your interest in our platform! In order to register, we
+          need some information. Please provide us with the following
+          information.
         </p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate className={css.form}>
+        <div>
+          <input
+            type="text"
+            {...register("name")}
+            placeholder="Name"
+            className={css.input}
+          />
+          {errors.name && (
+            <span className={css.error}>{errors.name.message}</span>
+          )}
+        </div>
         <div>
           <input
             type="email"
@@ -73,11 +88,10 @@ const LoginForm = () => {
           <span className={css.error}>{errors.password.message}</span>
         )}
         <Button type="submit" variant="btn--filled">
-          Log In
+          Sign Up
         </Button>
       </form>
     </div>
   );
 };
-
-export default LoginForm;
+export default Registration;

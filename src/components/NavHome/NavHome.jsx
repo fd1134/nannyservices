@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import LoginForm from "../../components/LoginForm/LoginForm";
+import Registration from "../../components/Registration/Registration";
 import  { useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import css from "./NavHome.module.css";
@@ -7,6 +8,7 @@ import Button from "../Button/Button";
 
 const NavHome = () => {
   const [isLoginOpen, setLoginOpen] = useState(false);
+  const [isRegisterOpen, setRegisterOpen] = useState(false);  
   const isLogin = false; 
 
   return (
@@ -48,7 +50,7 @@ const NavHome = () => {
           {!isLogin ? (
             <>
               <Button variant="btn--outlined" onClick={() => setLoginOpen(true)}>Log In</Button>
-              <Button to="/register" variant="btn--filled">Registration</Button>
+              <Button to="/register" variant="btn--filled" onClick={() => setRegisterOpen(true)}>Registration</Button>
             </>
           ) : (
             <>
@@ -60,6 +62,10 @@ const NavHome = () => {
       </div>
        <Modal isOpen={isLoginOpen} onClose={() => setLoginOpen(false)}>
         <LoginForm />
+      </Modal>
+      
+      <Modal isOpen={isRegisterOpen} onClose={() => setRegisterOpen(false)}>
+        <Registration />
       </Modal>
     </nav>
      
