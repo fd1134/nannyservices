@@ -1,14 +1,20 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Button from "../Button/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import css from "./Registration.module.css";
-const Registration = () => {
+import { auth } from "../../config/firebase";
+
+const Registration = ({ onClose }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState(""); // "success" | "error"
 
   const togglePassword = () => setShowPassword((prev) => !prev);
+
   const loginSchema = yup.object({
     name: yup
       .string()
@@ -23,27 +29,61 @@ const Registration = () => {
       .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
   });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log("Form verisi:", data);
+  const onSubmit = async (data) => {
+    try {
+      await createUserWithEmailAndPassword(auth, data.email, data.password);
+      setMessage("Registration successful!");
+      setMessageType("success");
+      reset(); // formu temizle
+      // Opsiyonel: modalı otomatik kapat
+      setTimeout(() => {
+        if (onClose) onClose();
+        setMessage(""); // mesajı temizle
+        setMessageType("");
+      }, 2000);
+    } catch (error) {
+      setMessage(error.message);
+      setMessageType("error");
+    }
   };
+
+  // Modal kapandığında mesajları temizle
+  useEffect(() => {
+    return () => {
+      setMessage("");
+      setMessageType("");
+    };
+  }, []);
+
   return (
     <div className={css.formContainer}>
       <div className={css.header}>
         <h3 className={css.formTitle}>Registration</h3>
         <p className={css.formSubtitle}>
-          Thank you for your interest in our platform! In order to register, we
-          need some information. Please provide us with the following
-          information.
+          Thank you for your interest in our platform! Please provide the following information.
         </p>
       </div>
+
+      {/* Mesaj gösterimi */}
+      {message && (
+        <div
+          className={
+            messageType === "success" ? css.successMsg : css.errorMsg
+          }
+        >
+          {message}
+        </div>
+      )}
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate className={css.form}>
         <div>
@@ -73,7 +113,9 @@ const Registration = () => {
             type={showPassword ? "text" : "password"}
             {...register("password")}
             placeholder="Password"
-            className={`${css.input} ${errors.password ? css.inputError : ""}`}
+            className={`${css.input} ${
+              errors.password ? css.inputError : ""
+            }`}
           />
           <button
             type="button"
@@ -87,6 +129,7 @@ const Registration = () => {
         {errors.password && (
           <span className={css.error}>{errors.password.message}</span>
         )}
+
         <Button type="submit" variant="btn--filled">
           Sign Up
         </Button>
@@ -94,4 +137,5 @@ const Registration = () => {
     </div>
   );
 };
+
 export default Registration;

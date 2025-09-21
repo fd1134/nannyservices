@@ -65,8 +65,9 @@ const NavHome = () => {
       </Modal>
       
       <Modal isOpen={isRegisterOpen} onClose={() => setRegisterOpen(false)}>
-        <Registration />
+        <Registration onClose={() => setRegisterOpen(false)} />
       </Modal>
+      
     </nav>
      
 

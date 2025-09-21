@@ -13,19 +13,19 @@
 
 .modal {
   
-  background-color: transparent;
+  background-color: var(--light);
   padding: 2rem;
   border-radius: 8px;
   min-width: 300px;
-  max-width: 588px;
-  max-height: 588px;
+
   min-height: 490px;
   position: relative;
+  border-radius: 30px;
 }
 
 .closeBtn {
   position: absolute;
-  top: 48px;
+  top: 18px;
   right: 5px;
   font-size: 1.5rem;
   background: none;
