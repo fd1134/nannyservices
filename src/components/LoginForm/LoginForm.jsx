@@ -1,14 +1,21 @@
+import { useDispatch} from "react-redux";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { toast } from "react-toastify";
 import css from "./LoginForm.module.css";
 import Button from "../Button/Button";
-import { useState } from "react";
 
-const LoginForm = () => {
+import { loginUser } from "../../redux/auth/operations";
+
+
+const LoginForm = ({onClose}) => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword((prev) => !prev);
+  const dispatch = useDispatch();
+
   const loginSchema = yup.object({
     email: yup
       .string()
@@ -27,10 +34,17 @@ const LoginForm = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log("Form verisi:", data);
-  };
+const onSubmit = async (data) => {
+  try {
+    await dispatch(loginUser(data)).unwrap();
+    onClose(); 
+     toast.success("Login successful 🎉");
 
+  } catch (error) {
+    console.error("Login failed:", error);
+    toast.error("Login failed. Please try again.");
+  }
+};
   return (
     <div className={css.formContainer}>
       <div className={css.header}>

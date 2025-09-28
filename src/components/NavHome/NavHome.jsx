@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import Registration from "../../components/Registration/Registration";
 import  { useState } from "react";
@@ -9,8 +10,8 @@ import Button from "../Button/Button";
 const NavHome = () => {
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [isRegisterOpen, setRegisterOpen] = useState(false);  
-  const isLogin = false; 
-
+ const user = useSelector((state) => state.auth.user);
+const isLogin = Boolean(user); 
   return (
     <nav className={css.navbar}>
       <div className={css.logo}>
@@ -61,7 +62,7 @@ const NavHome = () => {
         </div>
       </div>
        <Modal isOpen={isLoginOpen} onClose={() => setLoginOpen(false)}>
-        <LoginForm />
+        <LoginForm  onClose={() => setLoginOpen(false)}/>
       </Modal>
       
       <Modal isOpen={isRegisterOpen} onClose={() => setRegisterOpen(false)}>
