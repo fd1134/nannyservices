@@ -1,17 +1,32 @@
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { User } from 'lucide-react';
+import { toast } from "react-toastify"; 
 import LoginForm from "../../components/LoginForm/LoginForm";
 import Registration from "../../components/Registration/Registration";
-import  { useState } from "react";
+import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import css from "./NavHome.module.css";
 import Button from "../Button/Button";
+import { logoutUser } from "../../redux/auth/operations";
 
 const NavHome = () => {
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [isRegisterOpen, setRegisterOpen] = useState(false);  
- const user = useSelector((state) => state.auth.user);
-const isLogin = Boolean(user); 
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.currentUser);
+
+  const handleLogout = async () => {
+    try {
+      await dispatch(logoutUser()).unwrap();     
+      toast.success("Logout successful 🎉");
+    } catch (error) {
+      toast.error(error || "Logout failed ❌");
+    }
+  };
+
+  const isLogin = Boolean(user); 
+
   return (
     <nav className={css.navbar}>
       <div className={css.logo}>
@@ -29,7 +44,7 @@ const isLogin = Boolean(user);
       <div className={css.spacer}>
         <ul className={css.navList}>
           <li>
-            <NavLink to="/" className={css.navLink} >
+            <NavLink to="/" className={css.navLink}>
               Home
             </NavLink>
           </li>
@@ -50,29 +65,35 @@ const isLogin = Boolean(user);
         <div className={css.btnContainer}>
           {!isLogin ? (
             <>
-              <Button variant="btn--outlined" onClick={() => setLoginOpen(true)}>Log In</Button>
-              <Button to="/register" variant="btn--filled" onClick={() => setRegisterOpen(true)}>Registration</Button>
+              <Button variant="btn--outlined" onClick={() => setLoginOpen(true)}>
+                Log In
+              </Button>
+              <Button variant="btn--filled" onClick={() => setRegisterOpen(true)}>
+                Registration
+              </Button>
             </>
           ) : (
             <>
-              <span className={css.user}>John Doe</span>
-              <Button to="/logout" variant="btn--filled">Log Out</Button>
+              <div className={css.user}> 
+                <div  className={css.usericon}> <User fill="red" stroke="none"/> </div> 
+               <span className={css.username}>{user.displayName}</span>
+              </div>
+              <Button variant="btn--filled" onClick={handleLogout}>
+                Log Out
+              </Button>
             </>
           )}
         </div>
       </div>
-       <Modal isOpen={isLoginOpen} onClose={() => setLoginOpen(false)}>
-        <LoginForm  onClose={() => setLoginOpen(false)}/>
+
+      <Modal isOpen={isLoginOpen} onClose={() => setLoginOpen(false)}>
+        <LoginForm onClose={() => setLoginOpen(false)} />
       </Modal>
       
       <Modal isOpen={isRegisterOpen} onClose={() => setRegisterOpen(false)}>
         <Registration onClose={() => setRegisterOpen(false)} />
       </Modal>
-      
     </nav>
-     
-
-     
   );
 };
 

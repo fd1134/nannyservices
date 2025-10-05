@@ -7,7 +7,7 @@ import { useState } from "react";
 import css from "./Registration.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../redux/auth/operations";
-import { toast } from "react-toastify"; // ✅ toast
+import { toast } from "react-toastify"; 
 
 const Registration = ({ onClose }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -28,7 +28,7 @@ const Registration = ({ onClose }) => {
 
   const onSubmit = async (data) => {
     try {
-      await dispatch(registerUser({ email: data.email, password: data.password })).unwrap();
+      await dispatch(registerUser({ email: data.email, password: data.password, name: data.name })).unwrap();
       reset();
       if (onClose) onClose();
       toast.success("Registration successful 🎉"); 
