@@ -70,28 +70,25 @@
   display: flex;
   gap: 18px;
 }
-.userContainer{
+.user {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 14px;
- 
- 
-}
-.userIcon{
-   display: flex;
-  align-items: center;
-  justify-content: center;
-   width: 40px;
-  height: 40px;
-   background-color: var(--light);
-  align-items: center;
-  border-radius: 8px;
   
-
-}
-.userName{
-  font-weight: 500;
-  font-size: 18px;
+  border-radius: 8px;
+  gap: 8px;
   color: var(--light);
+  font-weight: 500;
+}
+.usericon {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(249, 249, 249);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.username {
+  font-size: 18px;
+  font-weight: 500;
 }

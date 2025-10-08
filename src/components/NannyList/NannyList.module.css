@@ -1,0 +1,56 @@
+.cardGrid {
+  display: flex;
+  flex-direction: column; /* Desktop: dikey */
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #F3F3F3;
+}
+
+/* Kartlar */
+.cardGrid li {
+  width: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Loading ve error mesajları */
+.loading,
+.error {
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+  padding: 40px 0;
+  font-weight: 500;
+}
+
+/* Tablet (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .cardGrid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .cardGrid li {
+    width: calc(50% - 8px); /* 2 kolon */
+  }
+}
+
+/* Mobil (max 767px) */
+@media (max-width: 767px) {
+  .cardGrid {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .cardGrid li {
+    width: 100%;
+  }
+
+  .loading,
+  .error {
+    font-size: 14px;
+    padding: 20px 0;
+  }
+}

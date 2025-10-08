@@ -1,12 +1,13 @@
+/* Genel Stil (Desktop) */
 .nannyCard {   
     display: flex;
     margin-top: 32px;
-    gap:24px;
+    gap: 24px;
     padding: 24px;
-   background-color: var(--light);
+    background-color: var(--light);
     border-radius: 24px;
- }
- .nannyAvatar{
+}
+.nannyAvatar{
     position: relative;
     width: 120px;
     height: 120px;
@@ -15,14 +16,12 @@
     margin-bottom: 16px;
     padding: 12px;
     border: 2px solid rgba(240, 63, 59, 0.2);
-    
- }
- .nannyAvatarImage{
-   border-radius: 15px;
-   background-color: #E0E0E0;
- }  
- 
- .nannyStatus{
+}
+.nannyAvatarImage{
+    border-radius: 15px;
+    background-color: #E0E0E0;
+}  
+.nannyStatus{
     width: 14px;
     height: 14px;
     border-radius: 50%;
@@ -30,9 +29,8 @@
     position: absolute;
     top: 9px;
     left: 60px;
-   
- }
- .nannyStatusDot{
+}
+.nannyStatusDot{
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -40,97 +38,140 @@
     position: absolute;
     top: 11px;
     left: 62px;
-    
- }
- .nannyInfo{
+}
+.nannyInfo{
     display: flex;
     flex-direction: column;
     gap: 24px;
-   
- }
- .nannyTop{
+}
+.nannyTop{
     display: flex;
     justify-content:space-between;
- }
- .nannyName{
-   display: flex;
-   flex-direction: column;
-   gap: 10px;
- }
- .jopTitle{
+}
+.nannyName{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.jopTitle{
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
     color: #8A8A89;
- }
+}
 .nannyNameTitle{
-   font-weight: 500;
-   font-size: 24px;
+    font-weight: 500;
+    font-size: 24px;
 }
 .nannyService{
-   display: flex;  
-   align-items: center;
-   gap: 40px;
- }
- .serviceInfo{
-      display: flex;     
-      align-items: center;
-      justify-content: center;
-      font-weight: 500;
-     font-size: 16px;
-      line-height: 24px;
-      gap: 8px;
-      margin-bottom: 8px;
+    display: flex;  
+    align-items: center;
+    gap: 40px;
+}
+.serviceInfo, .locationInfo{
+    display: flex;     
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.line{
+    border-left: 1px solid #11101C33;
+    padding-left: 8px;
+}
+.price{
+    color: #38CD3E;
+}
+.heartWrapper{
+    display: flex;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+}
+.nannyDetails{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 16px;
+}
+.nannyDetailsItem{
+    height: 40px;
+    border-radius: 24px;
+    background-color: #F3F3F3;
+    padding: 8px 16px;
+    color: var(--text);
+}
+.nannyDetailsLabel{
+    color: #8A8A89;
+}
+.age{
+    text-decoration: underline;
+}
+.about{
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(17, 16, 28, 0.5);
+}
+.nannyButton{
+    color: var(--text);
+}
 
- }
- .locationInfo{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 8px;
- }
- .line{
-   border-left: 1px solid #11101C33;
-   padding-left: 8px;
- }
- .price{
-     color: #38CD3E;
- }
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .nannyCard {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+    .nannyAvatar{
+        width: 100px;
+        height: 100px;
+    }
+    .nannyNameTitle{
+        font-size: 20px;
+    }
+    .jopTitle{
+        font-size: 14px;
+    }
+    .nannyService{
+        flex-direction: column;
+        gap: 16px;
+    }
+}
 
- .heartWrapper{
-  display: flex;
-  justify-content: center;
-  transform: translate(-50%, -50%)
- 
-  
- }
- .nannyDetails{
-   display: flex;
-   flex-wrap: wrap;
-   gap: 8px;
-   font-weight: 500;
-   font-size: 16px;
- }
- .nannyDetailsItem{
-   height: 40px;
-   border-radius: 24px;
-   background-color: #F3F3F3;
-   padding: 8px 16px;
-   color: var(--text);
- }
- .nannyDetailsLabel{
-
-   color: #8A8A89;
- }
- .age{
-   text-decoration: underline;
- }
- .about{
-   font-weight: 400;
-   font-size: 16px;
-   color: rgba(17, 16, 28, 0.5);
- }
- .nannyButton{
-   color: var(--text);
- }
+/* Mobil (max-width: 767px) */
+@media (max-width: 767px) {
+    .nannyCard {
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px;
+    }
+    .nannyAvatar{
+        width: 80px;
+        height: 80px;
+        padding: 8px;
+    }
+    .nannyNameTitle{
+        font-size: 18px;
+        text-align: center;
+    }
+    .jopTitle{
+        font-size: 14px;
+        text-align: center;
+    }
+    .nannyService{
+        flex-direction: column;
+        gap: 12px;
+    }
+    .serviceInfo, .locationInfo{
+        font-size: 14px;
+        justify-content: center;
+    }
+    .nannyDetails{
+        gap: 6px;
+        font-size: 14px;
+    }
+}

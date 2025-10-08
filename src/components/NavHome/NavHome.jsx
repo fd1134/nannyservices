@@ -1,7 +1,9 @@
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { User } from 'lucide-react';
 import { toast } from "react-toastify"; 
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../config/firebase';
 import LoginForm from "../../components/LoginForm/LoginForm";
 import Registration from "../../components/Registration/Registration";
 import { useState } from "react";
@@ -14,18 +16,19 @@ const NavHome = () => {
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [isRegisterOpen, setRegisterOpen] = useState(false);  
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.currentUser);
+ 
+  const [user, isLoading] = useAuthState(auth);
 
   const handleLogout = async () => {
     try {
       await dispatch(logoutUser()).unwrap();     
       toast.success("Logout successful 🎉");
     } catch (error) {
-      toast.error(error || "Logout failed ❌");
+      toast.error(error?.message || "Logout failed ❌");
     }
   };
 
-  const isLogin = Boolean(user); 
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <nav className={css.navbar}>
@@ -44,43 +47,33 @@ const NavHome = () => {
       <div className={css.spacer}>
         <ul className={css.navList}>
           <li>
-            <NavLink to="/" className={css.navLink}>
-              Home
-            </NavLink>
+            <NavLink to="/" className={css.navLink}>Home</NavLink>
           </li>
           <li>
-            <NavLink to="/nannies" className={css.navLink}>
-              Nannies
-            </NavLink>
+            <NavLink to="/nannies" className={css.navLink}>Nannies</NavLink>
           </li>
-          {isLogin && (
+          {user && (
             <li>
-              <NavLink to="/favorites" className={css.navLink}>
-                Favorites
-              </NavLink>
+              <NavLink to="/favorites" className={css.navLink}>Favorites</NavLink>
             </li>
           )}
         </ul>
 
         <div className={css.btnContainer}>
-          {!isLogin ? (
+          {!user ? (
             <>
-              <Button variant="btn--outlined" onClick={() => setLoginOpen(true)}>
-                Log In
-              </Button>
-              <Button variant="btn--filled" onClick={() => setRegisterOpen(true)}>
-                Registration
-              </Button>
+              <Button variant="btn--outlined" onClick={() => setLoginOpen(true)}>Log In</Button>
+              <Button variant="btn--filled" onClick={() => setRegisterOpen(true)}>Registration</Button>
             </>
           ) : (
             <>
               <div className={css.user}> 
-                <div  className={css.usericon}> <User fill="red" stroke="none"/> </div> 
-               <span className={css.username}>{user.displayName}</span>
+                <div className={css.usericon}>
+                  <User color="#F03F3B"  fill="#F03F3B" stroke="none"/>
+                </div> 
+                <span className={css.username}>{user.displayName || "User"}</span>
               </div>
-              <Button variant="btn--filled" onClick={handleLogout}>
-                Log Out
-              </Button>
+              <Button variant="btn--filled" onClick={handleLogout}>Log Out</Button>
             </>
           )}
         </div>
